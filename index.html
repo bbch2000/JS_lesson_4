@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson_4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <button class="red flash" onclick="preobraz()"></button>
+        <button class="blue flash" onclick="game()"></button>
+        <h1 class="text">You take the blue pill—the story ends, you wake up in your bed and believe whatever you want to believe. <br> You take the red pill—you stay in Wonderland, and I show you how deep the rabbit hole goes.</h1>
+    </div>
+    <script>
+        function preobraz() {
+            let number = prompt("write number from 0 to 999");
+            number = parseInt(number);
+            var check = true;
+            console.log(number);
+            if (isNaN(number)) {
+                alert('you write not a number');
+                check = false;
+            };
+            if (number > 999) {
+                alert('you write a number bigger than 999');
+                check = false;
+            };
+            if (number < 0) {
+                alert('you write a number smaller than 999');
+                check = false;
+            };
+            if (number > 100) {
+                number = String(number);
+            } else if (number > 9) {
+                number = '0' + String(number);
+            } else {
+                number = '00' + String(number)
+            }
+            
+            if (check == true) {
+                var brocknum = {
+                    hundreds: number.charAt(0),
+                    dozens: number.charAt(1),
+                    ones: number.charAt(2)
+                };
+                console.log(brocknum);
+            }
+        }
+        
+        
+        var questions = [
+                {
+                    count: 1,
+                    quest: 'Столица нашей родины это ',
+                    ansvers: ['Москва', 'Санкт-Петербург', 'Лондон', 'Париж'],
+                    correct: 1
+                },
+                {
+                    count: 2,
+                    quest: 'Кто автор «Сказки о попе и работнике его Балде»? ',
+                    ansvers: ['Лермонтов', 'Пушкин', 'Крылов', 'Достоевский'],
+                    correct: 2
+                },
+                {
+                    count: 3,
+                    quest: 'В каком году Россия объявила дефолт?',
+                    ansvers: ['1991', '1986', '1998', '2008'],
+                    correct: 3
+                },
+                {
+                    count: 4,
+                    quest: 'За чем послала жена мужа в мультфильме «Падал прошлогодний снег»?',
+                    ansvers: ['За подснежниками', 'За спичками', 'За ёлкой', 'За дровами'],
+                    correct: 3
+                },
+                {
+                    count: 5,
+                    quest: 'Где, если верить пословице, любопытной Варваре нос оторвали?',
+                    ansvers: ['На базаре', 'На фонтане', 'На лавке', 'На печке'],
+                    correct: 1
+                }
+            ];
+        var words = [
+            'Добро пожаловать в игру Кто хочет стать миллионером!!! \n Наш первый вопрос на 100 рублей:\n',
+            'Неплохо! \n Наш следующий вопрос на 1000 рублей:\n',
+            'Вот мы и добрались до первой несгораемой суммы в 10000 руб \n Наш следующий вопрос :\n',
+            'Откуда вы все это знаете?! \n Наш следующий вопрос на 100000 рублей:\n',
+            'Вот мы добрались до последнего этапа \n Наш следующий вопрос на 1000000 рублей:\n'
+        ];
+        money = [100,1000,10000,100000,1000000]
+        function game(){
+            let i = 0;
+            let check = true;
+            while (i < questions.length && check == true) {
+                let ansver = prompt(createtext(i));
+                ansver = parseInt(ansver);
+                if (ansver == questions[i].correct) {
+                    i++;
+                } else {
+                    alert(yourprize(i));
+                    check = false;
+                }
+            }
+            if (check == true) {
+                alert('Ты точно Вассерман! Твой прииз 1000000 рублей!!!');
+            }
+        };
+        function createtext(n) {
+            let text = '';
+            text = words[n] + questions[n].quest + '\n';
+            for (let i =0 ; i<4; i++){
+                text = text + (i +1) + '. ' + questions[n].ansvers[i] +'. \n'
+            }
+            text = text + 'Ваш ответ:'
+            return text;
+        }
+        function yourprize(n) {
+            let text = '';
+            if (n<3) {
+                text = 'Твой выигрыш 0 рублей, попробуй еще раз!';
+            } else {
+                text = 'Твой выигрыш 10000 рублей, а ты хорош!';
+            }
+            return text;
+        }
+    </script>
+</body>
+</html>
