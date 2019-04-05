@@ -13,7 +13,9 @@
     position: relative;
 }
 
-button:focus {outline:0;}
+button:focus {
+    outline:0;
+}
 
 .red {
     width: 29px;
